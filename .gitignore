@@ -71,3 +71,8 @@ coverage.xml
 
 # Other IDE configs
 .idea/
+
+# Ignore Microsoft Word documents
+*.doc
+*.docx
+
