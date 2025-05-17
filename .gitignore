@@ -1,0 +1,73 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+*.egg-info/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VS Code settings
+.vscode/
+
+# OS / system files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# Data files
+data/raw/
+data/processed/
+data/reduced/
+data/external/
+reports/
+
+# Model artifacts
+ml/models/
+*.pkl
+*.joblib
+*.h5
+
+# Airflow
+airflow/airflow.db
+airflow/airflow.cfg
+airflow/unittests.cfg
+
+# Streamlit or Dash cache
+dashboard/__pycache__/
+dashboard/.streamlit/
+
+# Frontend build
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+
+# Docker
+*.pid
+
+# Pytest
+htmlcov/
+.coverage
+.cache/
+.pytest_cache/
+
+# Coverage reports
+coverage.xml
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+
+# Other IDE configs
+.idea/
