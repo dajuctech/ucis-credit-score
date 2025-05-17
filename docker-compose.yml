@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  backend:
+    build: .
+    container_name: ucis-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: ucis-frontend
+    command: npm run dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+    working_dir: /app
+    restart: unless-stopped
