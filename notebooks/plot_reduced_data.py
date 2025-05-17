@@ -16,18 +16,23 @@ df_pca = pd.read_csv(PCA_PATH)
 df_umap = pd.read_csv(UMAP_PATH)
 df_labels = pd.read_csv(LABEL_PATH)
 
-# Try to extract the target label if available
-target_col = None
-for col in ['Credit_Score', 'credit_score', 'Target', 'Score']:
-    if col in df_labels.columns:
-        target_col = col
-        break
-
-if target_col:
-    labels = df_labels[target_col]
+# Attempt to reconstruct 'Credit_Score' from one-hot encoded columns
+if all(col in df_labels.columns for col in ['Credit_Score_Poor', 'Credit_Score_Standard']):
+    def reconstruct_credit_score(row):
+        if row['Credit_Score_Poor'] == 1:
+            return 'Poor'
+        elif row['Credit_Score_Standard'] == 1:
+            return 'Standard'
+        else:
+            return 'Good'  # One-hot dropped column (drop_first=True)
+    
+    labels = df_labels.apply(reconstruct_credit_score, axis=1)
+    target_col = 'Credit_Score'
+    print("✅ Reconstructed 'Credit_Score' from one-hot columns.")
 else:
     labels = None
-    print("⚠️ No label column found. Plotting without class colors.")
+    target_col = None
+    print("⚠️ Could not reconstruct 'Credit_Score'. Plotting without class colors.")
 
 # PCA Scatter Plot
 plt.figure(figsize=(8, 6))
