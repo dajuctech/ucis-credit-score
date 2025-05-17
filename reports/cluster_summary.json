@@ -1,0 +1,18 @@
+{
+    "PCA_KMeans": {
+        "best_k": 2,
+        "silhouette_score": 0.3941222285938798
+    },
+    "UMAP_KMeans": {
+        "best_k": 4,
+        "silhouette_score": 0.5934527541114398
+    },
+    "PCA_Hierarchical": {
+        "n_clusters": 3,
+        "silhouette_score": 0.2941872768853259
+    },
+    "UMAP_Hierarchical": {
+        "n_clusters": 3,
+        "silhouette_score": 0.5727560273392296
+    }
+}

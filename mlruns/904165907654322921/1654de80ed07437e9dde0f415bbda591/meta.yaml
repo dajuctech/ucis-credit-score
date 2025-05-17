@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/OneDrive%20-%20Birmingham%20City%20University/Desktop/End%20to%20End%20Projects/AI%20Projects/ucis-credit-score/mlruns/904165907654322921/1654de80ed07437e9dde0f415bbda591/artifacts
+end_time: 1747521629213
+entry_point_name: ''
+experiment_id: '904165907654322921'
+lifecycle_stage: active
+run_id: 1654de80ed07437e9dde0f415bbda591
+run_name: LogisticRegression
+run_uuid: 1654de80ed07437e9dde0f415bbda591
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1747521597599
+status: 3
+tags: []
+user_id: Daniel

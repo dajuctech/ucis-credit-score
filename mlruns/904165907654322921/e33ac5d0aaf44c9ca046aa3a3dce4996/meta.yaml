@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/OneDrive%20-%20Birmingham%20City%20University/Desktop/End%20to%20End%20Projects/AI%20Projects/ucis-credit-score/mlruns/904165907654322921/e33ac5d0aaf44c9ca046aa3a3dce4996/artifacts
+end_time: 1747521578254
+entry_point_name: ''
+experiment_id: '904165907654322921'
+lifecycle_stage: active
+run_id: e33ac5d0aaf44c9ca046aa3a3dce4996
+run_name: XGBoost
+run_uuid: e33ac5d0aaf44c9ca046aa3a3dce4996
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1747521578028
+status: 4
+tags: []
+user_id: Daniel

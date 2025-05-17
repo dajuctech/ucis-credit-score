@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniel/OneDrive%20-%20Birmingham%20City%20University/Desktop/End%20to%20End%20Projects/AI%20Projects/ucis-credit-score/mlruns/904165907654322921/29f2038e4b3e47c3991a09428ec9e937/artifacts
+end_time: 1747521578019
+entry_point_name: ''
+experiment_id: '904165907654322921'
+lifecycle_stage: active
+run_id: 29f2038e4b3e47c3991a09428ec9e937
+run_name: RandomForest
+run_uuid: 29f2038e4b3e47c3991a09428ec9e937
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1747521526120
+status: 3
+tags: []
+user_id: Daniel
