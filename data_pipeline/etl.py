@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import LabelEncoder
 
 # Base paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -19,26 +19,30 @@ def preprocess_data(df):
     df.drop_duplicates(inplace=True)
 
     # 2. Drop irrelevant columns if present
-    drop_cols = ['ID', 'Name', 'SSN']  # Add/remove based on your dataset
+    drop_cols = ['ID', 'Name', 'SSN']  # Modify based on your dataset
     df.drop(columns=[col for col in drop_cols if col in df.columns], inplace=True)
 
-    # 3. Fix data types
+    # 3. Convert date columns to datetime
     for col in df.columns:
         if 'Date' in col or 'date' in col:
             df[col] = pd.to_datetime(df[col], errors='coerce')
 
-    # 4. Convert time periods (e.g., "2 years and 3 months") into months
+    # 4. Convert credit age string to months
     def convert_period(value):
         if pd.isna(value):
             return None
         value = str(value).lower()
-        years = 0
-        months = 0
+        years = months = 0
         if 'year' in value:
-            parts = value.split('year')[0].strip()
-            years = int(parts) if parts.isdigit() else 0
+            try:
+                years = int(value.split('year')[0].strip())
+            except:
+                years = 0
         if 'month' in value:
-            months = int(''.join(filter(str.isdigit, value.split('month')[0].split()[-1]))) if 'month' in value else 0
+            try:
+                months = int(''.join(filter(str.isdigit, value.split('month')[0].split()[-1])))
+            except:
+                months = 0
         return years * 12 + months
 
     if 'Credit_History_Age' in df.columns:
@@ -51,7 +55,18 @@ def preprocess_data(df):
 
     # 6. Encode categorical variables
     categorical_cols = df.select_dtypes(include=['object']).columns
-    df = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
+
+    # Separate low and high cardinality
+    safe_cats = [col for col in categorical_cols if df[col].nunique() <= 50]
+    high_cats = [col for col in categorical_cols if df[col].nunique() > 50]
+
+    # One-hot encode low-cardinality
+    df = pd.get_dummies(df, columns=safe_cats, drop_first=True)
+
+    # Label encode high-cardinality
+    for col in high_cats:
+        le = LabelEncoder()
+        df[col] = le.fit_transform(df[col].astype(str))
 
     return df
 
