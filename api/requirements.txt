@@ -1,0 +1,44 @@
+# --- Data Science & ML ---
+pandas
+numpy
+scikit-learn
+xgboost
+matplotlib
+seaborn
+plotly
+umap-learn
+imbalanced-learn
+scipy
+joblib
+
+# --- Notebook & Dev Tools ---
+jupyter
+ipykernel
+notebook
+
+# --- API (FastAPI) ---
+fastapi
+uvicorn[standard]
+pydantic
+python-multipart
+
+# --- Dashboard (Pick one or both) ---
+streamlit
+# dash
+
+# --- Cloud & Environment ---
+boto3
+python-dotenv
+
+# --- Data Validation ---
+great_expectations
+
+# --- Testing & CI ---
+pytest
+pytest-cov
+httpx
+requests
+
+# --- Optional Utilities ---
+typer
+aiofiles
