@@ -5,18 +5,20 @@ FROM python:3.10
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Set work directory
+# Set working directory
 WORKDIR /app
 
+# Copy requirements first to install separately (for caching)
+COPY requirements.txt .
+
 # Install dependencies
-COPY requirements.txt ./
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Copy app files
+# Copy the whole project
 COPY . .
 
 # Expose FastAPI port
 EXPOSE 8000
 
-# Run FastAPI
+# Run the app
 CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]

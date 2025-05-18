@@ -8,3 +8,5 @@ data/raw/
 data/processed/
 data/reduced/
 reports/
+node_modules
+dist

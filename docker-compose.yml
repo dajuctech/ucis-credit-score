@@ -15,11 +15,12 @@ services:
   frontend:
     build:
       context: ./frontend
+      dockerfile: Dockerfile
     container_name: ucis-frontend
-    command: npm run dev
     ports:
       - "5173:5173"
     volumes:
       - ./frontend:/app
     working_dir: /app
     restart: unless-stopped
+    command: npm run dev
