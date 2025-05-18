@@ -40,5 +40,5 @@ httpx
 requests
 
 # --- Optional Utilities ---
-typer               # CLI tools
-aiofiles            # Async file support
+typer
+aiofiles
