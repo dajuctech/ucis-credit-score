@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from api.routes.predict import router as predict_router
+from api.routes.health import router as health_router
 
 app = FastAPI(
     title="Credit Score Prediction API",
@@ -7,11 +8,9 @@ app = FastAPI(
     description="API to predict creditworthiness using financial history."
 )
 
-# ✅ Health endpoint - must be inside `main.py` and tied to `app`
-@app.get("/health", tags=["Utility"])
-def health_check():
-    return {"status": "ok"}
+@app.get("/", tags=["Utility"])
+def root():
+    return {"message": "Welcome to the Credit Score Prediction API"}
 
-# ✅ Mount the prediction route from /api/routes/predict.py
-#app.include_router(health_router)
-app.include_router(predict_router, tags=["Prediction"])
+app.include_router(health_router)
+app.include_router(predict_router)

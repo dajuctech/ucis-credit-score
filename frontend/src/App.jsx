@@ -1,34 +1,48 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [features, setFeatures] = useState(Array(18).fill(''))
+  const [prediction, setPrediction] = useState(null)
+
+  const handleChange = (index, value) => {
+    const newFeatures = [...features]
+    newFeatures[index] = value
+    setFeatures(newFeatures)
+  }
+
+  const handleSubmit = async () => {
+    const numericFeatures = features.map(f => parseFloat(f))
+    const res = await fetch('http://localhost:8000/predict', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ features: numericFeatures }),
+    })
+
+    const data = await res.json()
+    setPrediction(data.prediction || data.detail)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="App">
+      <h1>Credit Score Predictor</h1>
+
+      {features.map((val, i) => (
+        <input
+          key={i}
+          type="number"
+          placeholder={`Feature ${i + 1}`}
+          value={val}
+          onChange={(e) => handleChange(i, e.target.value)}
+        />
+      ))}
+
+      <button onClick={handleSubmit}>Predict</button>
+
+      {prediction && (
+        <h2>Prediction: {prediction}</h2>
+      )}
+    </div>
   )
 }
 
